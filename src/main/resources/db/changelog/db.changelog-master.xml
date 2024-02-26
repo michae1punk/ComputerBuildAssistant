@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet id="2023-04-25_createUserTable" author="Mikhail Myakishev">
+        <createTable tableName="user">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="user_id_pk" />
+            </column>
+            <column name="username" type="varchar">
+                <constraints unique="true" uniqueConstraintName="user_username_unq" />
+            </column>
+            <column name="password" type="varchar"/>
+        </createTable>
+        <addAutoIncrement tableName="user" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="2023-04-25_addAdminUser" author="Mikhail Myakishev">
+        <insert tableName="user">
+            <column name="username" value="admin"/>
+            <column name="password" value="admin"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2023-04-25_createProcessorTable" author="Mikhail Myakishev">
+        <createTable tableName="processor">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="processor_id_pk" />
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" uniqueConstraintName="processor_name_unq" />
+            </column>
+            <column name="price" type="double"/>
+            <column name="company_name" type="varchar"/>
+            <column name="socket" type="varchar"/>
+            <column name="cores" type="integer"/>
+            <column name="frequency" type="double"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2023-04-25_addProcessorIncrement" author="Mikhail Myakishev">
+        <addAutoIncrement tableName="processor" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="2023-04-25_createVideocardTable" author="Mikhail Myakishev">
+        <createTable tableName="videocard">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="videocard_id_pk" />
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" uniqueConstraintName="videocard_name_unq" />
+            </column>
+            <column name="price" type="double"/>
+            <column name="company_name" type="varchar"/>
+            <column name="gpu" type="varchar"/>
+            <column name="video_memory_size" type="integer"/>
+            <column name="memory_type" type="varchar"/>
+        </createTable>
+        <addAutoIncrement tableName="videocard" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="2023-04-26_createMotherboardTable" author="Mikhail Myakishev">
+        <createTable tableName="motherboard">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="motherboard_id_pk" />
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" uniqueConstraintName="motherboard_name_unq" />
+            </column>
+            <column name="price" type="double"/>
+            <column name="company_name" type="varchar"/>
+            <column name="socket" type="varchar"/>
+        </createTable>
+        <addAutoIncrement tableName="motherboard" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1" />
+    </changeSet>
+
+</databaseChangeLog>
